@@ -9,7 +9,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     return (
         <>
             <Header/>
-            <main className='_container'>
+            <main>
                 {children}
             </main>
         </>

@@ -1,4 +1,5 @@
-import HomePage from './core/components/Pages/HomePage';
+import ProductsPage from './core/components/Pages/ProductsPage';
+import HomePage from './core/components/Pages/ProductsPage';
 
 import MainLayout from './core/layouts/MainLayout';
 
@@ -6,7 +7,7 @@ function App() {
 
   return (
     <MainLayout>
-      <HomePage />
+      <ProductsPage />
     </MainLayout>
   );
 }

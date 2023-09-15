@@ -6,12 +6,16 @@
 @import './variables.scss';
 
 body {
+    @apply h-screen w-screen;
+    #root {
+        @apply h-full w-full flex flex-col;
+    }
     background: #F7FAFC;
     font-family: $fontFamily;
 }
 
 main {
-    @apply container;
+    @apply flex flex-1 w-screen;
 }
 
 ._container {
