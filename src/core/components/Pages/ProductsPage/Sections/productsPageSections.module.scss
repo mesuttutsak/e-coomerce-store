@@ -4,12 +4,11 @@
     section {}
 
     &Filtering {
-        @apply bg-green-500;
         width: 240px;
     }
 
     &Body {
-        @apply bg-blue-500 flex flex-col flex-1;
+        @apply flex flex-col flex-1  ml-6;
 
         &Headline {
             @apply bg-purple-500;

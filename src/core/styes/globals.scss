@@ -4,6 +4,11 @@
 
 @import './fonts.scss';
 @import './variables.scss';
+@import "./mixins.scss";
+
+* {
+    @apply box-border;
+}
 
 body {
     @apply h-screen w-screen;

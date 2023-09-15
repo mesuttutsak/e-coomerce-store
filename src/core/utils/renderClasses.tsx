@@ -1,3 +1,3 @@
-export const renderClasses = (classes: string[]) => {
-    return classes.join(" ");
+export const renderClasses = (classes: string[] | undefined) => {
+    return classes?.join(" ");
 }

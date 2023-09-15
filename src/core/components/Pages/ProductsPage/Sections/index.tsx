@@ -1,4 +1,5 @@
 
+import Section from '../../../Section';
 import Filtering from './Filtering';
 import Headline from './Headline';
 import ProductList from './ProductList';
@@ -9,10 +10,10 @@ const ProductsSections = () => {
   return (
     <div className={styles.products}>
       <Filtering />
-      <section className={styles.productsBody}>
+      <Section className={[styles.productsBody]}>
         <Headline />
         <ProductList />
-      </section>
+      </Section>
     </div>
   )
 }

@@ -1,11 +1,13 @@
 import Dropdown from "../../../../Dropdown";
+import Section from "../../../../Section";
 import styles from "../productsPageSections.module.scss";
 
 const Filtering = () => {
   return (
-    <section className={styles.productsFiltering}>
-      <Dropdown />
-    </section>
+    <Section className={[styles.productsFiltering]}>
+      <Dropdown title="Deneme">asd</Dropdown>
+      <Dropdown title="Deneme123">asd</Dropdown>
+    </Section>
   )
 }
 

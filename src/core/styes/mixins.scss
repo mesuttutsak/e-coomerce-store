@@ -1,0 +1,131 @@
+
+
+@mixin textProperties() {
+    &[data-fs="xs"] {
+      @apply text-xs;
+    }
+    &[data-fs="sm"] {
+      @apply text-sm;
+    }
+    &[data-fs="md"],
+    &[data-fs="base"] {
+      @apply text-base;
+    }
+    &[data-fs="lg"] {
+      @apply text-lg;
+    }
+    &[data-fs="xl"] {
+      @apply text-xl;
+    }
+    &[data-fs="xxl"] {
+      @apply text-2xl;
+    }
+    &[data-fs="xxxl"] {
+      @apply text-3xl;
+    }
+    &[data-fs="xxxxl"] {
+      @apply text-4xl;
+    }
+    &[data-fs="xxxxxl"] {
+      @apply text-5xl;
+    }
+  
+    &[data-fw="thin"] {
+      @apply font-thin;
+    }
+    &[data-fw="extralight"] {
+      @apply font-extralight;
+    }
+    &[data-fw="light"] {
+      @apply font-light;
+    }
+    &[data-fw="normal"] {
+      @apply font-normal;
+    }
+    &[data-fw="medium"] {
+      @apply font-medium;
+    }
+    &[data-fw="semibold"] {
+      @apply font-semibold;
+    }
+    &[data-fw="bold"] {
+      @apply font-bold;
+    }
+    &[data-fw="extrabold"] {
+      @apply font-extrabold;
+    }
+    &[data-fw="black"] {
+      @apply font-black;
+    }
+  
+    &[data-fw="thin"] {
+      @apply font-thin;
+    }
+    &[data-fw="extralight"] {
+      @apply font-extralight;
+    }
+    &[data-fw="light"] {
+      @apply font-light;
+    }
+    &[data-fw="normal"] {
+      @apply font-normal;
+    }
+    &[data-fw="medium"] {
+      @apply font-medium;
+    }
+    &[data-fw="semibold"] {
+      @apply font-semibold;
+    }
+    &[data-fw="bold"] {
+      @apply font-bold;
+    }
+    &[data-fw="extrabold"] {
+      @apply font-extrabold;
+    }
+    &[data-fw="black"] {
+      @apply font-black;
+    }
+
+    &[data-lh="3"] {
+      @apply leading-3;
+    }
+    &[data-lh="4"] {
+      @apply leading-4;
+    }
+    &[data-lh="5"] {
+      @apply leading-5;
+    }
+    &[data-lh="6"] {
+      @apply leading-6;
+    }
+    &[data-lh="7"] {
+      @apply leading-7;
+    }
+    &[data-lh="8"] {
+      @apply leading-8;
+    }
+    &[data-lh="9"] {
+      @apply leading-9;
+    }
+    &[data-lh="10"] {
+      @apply leading-10;
+    }
+    &[data-lh="none"] {
+      @apply leading-none;
+    }
+    &[data-lh="tight"] {
+      @apply leading-none;
+    }
+    &[data-lh="snug"] {
+      @apply leading-none;
+    }
+    &[data-lh="normal"] {
+      @apply leading-none;
+    }
+    &[data-lh="relaxed"] {
+      @apply leading-none;
+    }
+    &[data-lh="loose"] {
+      @apply leading-none;
+    }
+  }
