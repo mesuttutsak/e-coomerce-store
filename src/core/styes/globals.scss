@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './fonts.scss';
+@import './variables.scss';
+
+body {
+    background: #F7FAFC;
+    font-family: $fontFamily;
+}
+
+main {
+    @apply container;
+}
+
+._container {
+    @apply container mx-auto;
+}
