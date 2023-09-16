@@ -19,10 +19,15 @@ body {
     font-family: $fontFamily;
 }
 
+header {
+    @apply bg-white p-5 border border-gray-200;
+}
+
 main {
-    @apply flex flex-1 w-screen;
+    @apply flex flex-1 mt-6 w-screen;
 }
 
 ._container {
     @apply container mx-auto;
+    max-width: 1178px;
 }

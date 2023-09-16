@@ -3,25 +3,23 @@
 @tailwind utilities;
 
 .dropdown {
-    @apply relative border-t-2;
+    @apply relative border-t border-gray-300;
 
     &Heading {
         @apply block py-3;
     }
 
     &Body {
-        @apply hidden;
+        @apply hidden pb-7;
     }
 
     input[name=dropdownControl] {
         @apply hidden;
 
         &:checked {
-            &~.dropdownBody { @apply block; }
+            &~.dropdownBody {
+                @apply block;
+            }
         }
     }
-
-     & + & {
-        @apply mt-7;
-     }
 }

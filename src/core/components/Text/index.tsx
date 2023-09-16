@@ -19,8 +19,8 @@ const Text = ({
   children,
   tag = "",
   customClassname = [],
-  fontSize = "",
-  fontWeight = "",
+  fontSize = "base",
+  fontWeight = "normal",
   lineHeight = "",
   color = "",
 }: TextProps ) => {

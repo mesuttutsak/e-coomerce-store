@@ -1,17 +1,49 @@
 .products {
-    @apply flex flex-row min-h-full;
+    @apply flex flex-row flex-1;
 
     section {}
 
     &Filtering {
+        @apply h-fit pb-7 sticky top-0;
         width: 240px;
     }
 
     &Body {
-        @apply flex flex-col flex-1  ml-6;
+        @apply flex flex-col flex-1 gap-5 ml-6;
 
         &Headline {
-            @apply bg-purple-500;
+            @apply flex items-center justify-start h-16 p-3 bg-white border border-gray-300  border rounded-lg;
+        }
+
+        &List {
+            @apply flex flex-wrap gap-4;
+
+            &Item {
+                @apply border bg-white border-gray-300  border rounded-md overflow-hidden;
+                width: calc((100% - 2rem) / 3);
+
+                &ImgTop {
+                    @apply relative block overflow-hidden border-b border-gray-200;
+                    height: 200px;
+
+                    img {
+                        @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-w-fit;
+                        height: 100%;
+                        width: auto;
+                    }
+                }
+
+                &Body {
+                    @apply flex  flex-col gap-3 p-3;
+
+                    .rating {
+                        @apply flex flex-row items-center justify-start gap-2 capitalize;
+                        &Stars {
+                            @apply flex flex-row;
+                        }
+                    }
+                }
+            }
         }
     }
 }

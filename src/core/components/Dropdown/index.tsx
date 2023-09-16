@@ -12,7 +12,7 @@ interface DropdownProps {
     isOpen?: boolean;
 }
 
-const Dropdown = ({ children, title, isOpen = false }: DropdownProps) => {
+const Dropdown = ({ children, title, isOpen = true }: DropdownProps) => {
 
     return (
         <div className={styles.dropdown}>
