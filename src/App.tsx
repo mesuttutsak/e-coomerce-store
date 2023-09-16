@@ -1,5 +1,4 @@
 import ProductsPage from './core/components/Pages/ProductsPage';
-import HomePage from './core/components/Pages/ProductsPage';
 
 import MainLayout from './core/layouts/MainLayout';
 

@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './reset.scss';
 @import './fonts.scss';
 @import './variables.scss';
 @import "./mixins.scss";
@@ -28,6 +29,6 @@ main {
 }
 
 ._container {
-    @apply container mx-auto;
-    max-width: 1178px;
+    @apply container mx-auto px-3;
+    max-width: 1024px;
 }

@@ -19,9 +19,9 @@ const Text = ({
   children,
   tag = "",
   customClassname = [],
-  fontSize = "base",
+  fontSize = "sm",
   fontWeight = "normal",
-  lineHeight = "",
+  lineHeight = "tight",
   color = "",
 }: TextProps ) => {
     const Tag : any = tag ? tag : 'p';

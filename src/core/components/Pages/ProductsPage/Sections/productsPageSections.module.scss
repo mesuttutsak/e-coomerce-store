@@ -1,5 +1,5 @@
 .products {
-    @apply flex flex-row flex-1;
+    @apply flex flex-row flex-1 gap-6;
 
     section {}
 
@@ -9,7 +9,7 @@
     }
 
     &Body {
-        @apply flex flex-col flex-1 gap-5 ml-6;
+        @apply flex flex-col flex-1 gap-5;
 
         &Headline {
             @apply flex items-center justify-start h-16 p-3 bg-white border border-gray-300  border rounded-lg;
@@ -34,7 +34,7 @@
                 }
 
                 &Body {
-                    @apply flex  flex-col gap-3 p-3;
+                    @apply flex  flex-col p-3;
 
                     .rating {
                         @apply flex flex-row items-center justify-start gap-2 capitalize;

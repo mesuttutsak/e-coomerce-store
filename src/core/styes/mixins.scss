@@ -114,18 +114,18 @@
       @apply leading-none;
     }
     &[data-lh="tight"] {
-      @apply leading-none;
+      @apply leading-tight;
     }
     &[data-lh="snug"] {
-      @apply leading-none;
+      @apply leading-snug;
     }
     &[data-lh="normal"] {
-      @apply leading-none;
+      @apply leading-normal;
     }
     &[data-lh="relaxed"] {
-      @apply leading-none;
+      @apply leading-relaxed;
     }
     &[data-lh="loose"] {
-      @apply leading-none;
+      @apply leading-loose;
     }
   }
