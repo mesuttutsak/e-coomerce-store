@@ -6,6 +6,7 @@ import { calcPercent } from '../../../../../utils/calcPercent';
 import { AiTwotoneStar } from "react-icons/ai";
 import Text from '../../../../Text';
 import { useSelector } from 'react-redux';
+import { log } from 'util';
 
 const Item = ({ obj }: { obj: any }) => {
   const [{ thumbnail, rating, price, discountPercentage, title, brand }] = useState<any>(obj);
@@ -27,11 +28,6 @@ const Item = ({ obj }: { obj: any }) => {
 
     return
   }, [rating]);
-
-  useEffect(() => {
-    console.log(obj);
-  }, [obj])
-
 
   return (
     <li className={styles.productsBodyListItem}>
@@ -58,6 +54,10 @@ const Item = ({ obj }: { obj: any }) => {
 
 const ProductList = () => {
   const { products } = useSelector((state:any) => state);
+
+  useEffect(() => {
+    console.log(products);
+  }, [products])
 
   return (
     <ul className={styles.productsBodyList}>

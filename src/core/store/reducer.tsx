@@ -1,13 +1,15 @@
-type AppState = {
+export type AppState = {
   products: object[];
   categories: string[];
   productLength: number | null;
+  searchText: string;
 };
 
 const initialState : AppState = {
   products: [],
   categories: [],
-  productLength: null
+  productLength: null,
+  searchText: ''
 };
 
 export const reducer = (state : AppState = initialState, action:any) => {
@@ -20,6 +22,9 @@ export const reducer = (state : AppState = initialState, action:any) => {
     }
     case "setProductLength": {
       return { ...state, productLength: action.payload };
+    }
+    case "setSearchText": {
+      return { ...state, searchText: action.payload };
     }
     default:
       return state;
