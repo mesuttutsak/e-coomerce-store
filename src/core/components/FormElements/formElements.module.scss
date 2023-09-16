@@ -1,0 +1,10 @@
+.input,
+select {
+  @apply border rounded outline-0 py-2 text-sm;
+  line-height: 20px;
+}
+
+.input {
+  @apply px-3;
+  min-width: 115px;
+}

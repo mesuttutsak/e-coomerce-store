@@ -44,25 +44,22 @@ const Item = ({ obj }: { obj: any }) => {
           </span>
           <Text >{calcPercent(4.631231234, 10, 1)}</Text>
         </div>
-        {/* <div>
-          <Text tag='h3' fontWeight='medium'>${price} </Text> <Text fontSize='xs'>- %{discountPercentage}</Text>
-        </div> */}
+        <div>
+          <Text tag='h3' fontWeight='medium'>brand: {brand} </Text><br/>
+          <Text tag='h3' fontWeight='medium'>price: ${price} </Text>
+        </div>
       </div>
     </li>
   )
 }
 
 const ProductList = () => {
-  const { products } = useSelector((state:any) => state);
-
-  useEffect(() => {
-    console.log(products);
-  }, [products])
+  const { products, filteredProducts } = useSelector((state:any) => state);
 
   return (
     <ul className={styles.productsBodyList}>
       {
-        products?.map((item: any) => <Item key={item.id} obj={item} />)
+        filteredProducts?.map((item: any) => <Item key={item.id} obj={item} />)
       }
     </ul>
   )

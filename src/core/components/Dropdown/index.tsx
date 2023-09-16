@@ -4,8 +4,6 @@ import Text from '../Text'
 
 import styles from "./dropdown.module.scss";
 
-import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
-
 interface DropdownProps {
     children: ReactNode;
     title: string;
