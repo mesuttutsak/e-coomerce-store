@@ -1,6 +1,5 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React from 'react';
 import Header from '../../components/Header';
-import { useDispatch } from 'react-redux';
 
 interface MainLayoutProps {
   children: React.ReactNode;

@@ -12,13 +12,13 @@ interface TextProps {
     fontWeight?: string,
     lineHeight?: string,
     color?: string,
-    customClassname?: string[]
+    className?: string[]
   }
 
 const Text = ({
   children,
   tag = "",
-  customClassname = [],
+  className : customClassname = [],
   fontSize = "sm",
   fontWeight = "normal",
   lineHeight = "tight",

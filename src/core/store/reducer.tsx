@@ -1,6 +1,7 @@
 export type BasketItem = {
+  id: string;
   title: string;
-  desc: string;
+  description: string;
   thumbnail: string;
   count: number;
 }
@@ -24,20 +25,7 @@ export type AppState = {
 
 const initialState : AppState = {
   products: [],
-  basket: [
-    {
-      title: 'title',
-      desc: 'titleasfasdglahdskg ksadghaksd',
-      thumbnail: 'https://i.dummyjson.com/data/products/1/thumbnail.jpg',
-      count: 5
-    },
-    {
-      title: 'title',
-      desc: 'titleasfasdglahdskg ksadghaksd',
-      thumbnail: 'https://i.dummyjson.com/data/products/1/thumbnail.jpg',
-      count: 5
-    },
-  ],
+  basket: [],
   filteredProducts: [],
   categories: [],
   brands: [],
