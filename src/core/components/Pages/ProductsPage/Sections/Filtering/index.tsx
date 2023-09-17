@@ -113,7 +113,6 @@ const Filtering = () => {
   });
 
   useEffect(() => {
-    console.log(filterQuery);
     dispatch({ type: "setFilteredProducts", payload: onFilteringData(products, filterQuery) });
     dispatch({ type: "setProductLength", payload: onFilteringData(products, filterQuery).length });
   }, [filterQuery]);
@@ -151,7 +150,7 @@ const Filtering = () => {
         <Dropdown title="Rating" isOpen showMore={false}>
           <div className={styles.dropDownBodyContainer}>
             {Array.from({ length: 5 }, (_, index) => index).map((count: any) => {
-              return <Item tag="span" type="radio" name="rating" value={count + 1} onChange={(e => handleInputChange(e))}>
+              return <Item key={'rating'+count} tag="span" type="radio" name="rating" value={count + 1} onChange={(e => handleInputChange(e))}>
                 <AiTwotoneStar size={20} color={calcRating(count + 1, filterQuery.rating) ? 'orange' : '#d3ccc5'} />
               </Item>
             })}
