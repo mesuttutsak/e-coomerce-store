@@ -1,31 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
-import MainLayout from '../../../layouts/MainLayout';
-import { getProductDetail } from '../../../services';
-import Text from '../../Text';
-
 import { BsCheckLg } from "react-icons/bs";
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getProductDetail } from '../../../services';
+
+import MainLayout from '../../../layouts/MainLayout';
+
+import Text from '../../Text';
 import Button from '../../Button';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { BasketItem } from '../../../store/reducer';
-
-
 
 export function findBasketItemCount(list: any[], id: number) {
-  const detectItem = list.some((item) => item.id == id);
-  const findIndex = list?.findIndex((item) => item.id == id);
+  const detectItem = list.some((item) => item.id === id);
+  const findIndex = list?.findIndex((item) => item.id === id);
   const findCount = detectItem ? list[findIndex]?.count : 0;
   return findCount;
 }
 
-
-
 export function uptBasketObject(list: any[], data: any, id: string, action: 'inc' | 'dic' | null) {
   let result = list;
-  const detectItem = result.some((item) => item.id == id);
-  const findIndex = result.findIndex((item) => item.id == id);
+  const detectItem = result.some((item) => item.id === id);
+  const findIndex = result.findIndex((item) => item.id === id);
 
   const obj = {
     id: data.id,
@@ -36,10 +32,10 @@ export function uptBasketObject(list: any[], data: any, id: string, action: 'inc
   }
 
   if (detectItem) {
-    if (action == 'inc') {
+    if (action === 'inc') {
       result[findIndex].count = result[findIndex].count + 1;
-    } else if (action == 'dic') {
-      if (result[findIndex].count == 1) {
+    } else if (action === 'dic') {
+      if (result[findIndex].count === 1) {
         result.splice(result[findIndex], 1)
       } else {
         result[findIndex].count = result[findIndex].count - 1;
