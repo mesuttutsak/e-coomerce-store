@@ -1,5 +1,14 @@
+export type BasketItem = {
+  title: string;
+  desc: string;
+  thumbnail: string;
+  count: number;
+}
+export type BasketList = BasketItem[]
+
 export type AppState = {
   products: object[];
+  basket: BasketList;
   filteredProducts: object[];
   categories: string[];
   brands: string[];
@@ -15,6 +24,20 @@ export type AppState = {
 
 const initialState : AppState = {
   products: [],
+  basket: [
+    {
+      title: 'title',
+      desc: 'titleasfasdglahdskg ksadghaksd',
+      thumbnail: 'https://i.dummyjson.com/data/products/1/thumbnail.jpg',
+      count: 5
+    },
+    {
+      title: 'title',
+      desc: 'titleasfasdglahdskg ksadghaksd',
+      thumbnail: 'https://i.dummyjson.com/data/products/1/thumbnail.jpg',
+      count: 5
+    },
+  ],
   filteredProducts: [],
   categories: [],
   brands: [],
@@ -29,8 +52,8 @@ export const reducer = (state : AppState = initialState, action:any) => {
     case "setProducts": {
       return { ...state, products: action.payload };
     }
-    case "setProducts": {
-      return { ...state, products: action.payload };
+    case "setBasket": {
+      return { ...state, basket: action.payload };
     }
     
     case "setFilteredProducts": {

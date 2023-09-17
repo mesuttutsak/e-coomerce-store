@@ -1,13 +1,13 @@
-import { useSelector } from "react-redux";
 import styles from "../productsPageSections.module.scss";
 import Text from "../../../../Text";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DebounceInput from "../../../../FormElements/DebounceInput";
 
 const Headline = () => {
   const dispatch = useDispatch();
 
   const { products, searchText } = useSelector((state: any) => state);
+
   return (
     <div className={styles.productsBodyHeadline}>
       <span>
@@ -21,7 +21,7 @@ const Headline = () => {
         }
       </span>
 
-      <DebounceInput id='search' value={searchText} onInputValue={(value: string) => dispatch({ type: "setSearchText", payload: value })} setLoading={() => null} />
+      <DebounceInput id='search' placeholder="Search in products details..." value={searchText} onInputValue={(value: string) => dispatch({ type: "setSearchText", payload: value })} setLoading={() => null} />
     </div>
   )
 }

@@ -1,0 +1,5 @@
+@import '../../styes//globals.scss';
+
+.headerWrap {
+    @apply flex flex-row justify-between items-center;
+}

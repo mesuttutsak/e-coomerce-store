@@ -7,6 +7,15 @@
 
     &Heading {
         @apply block py-3;
+
+        &Inspector {
+            @apply absolute inline-flex items-center justify-center right-0 top-3;
+            &:after {
+                @apply content-["+"] font-normal;
+            }
+            width: 20px;
+            height: 20px;
+        }
     }
 
     &Body {
@@ -32,6 +41,12 @@
             &~.dropdownBody,
             &~.dropdownFooter {
                 @apply block;
+            }
+            &~.dropdownHeadingInspector {
+                @apply block;
+                &::after{
+                    @apply content-["-"]
+                }
             }
         }
     }

@@ -1,0 +1,76 @@
+.basket {
+    @apply relative;
+
+    &Btn {
+        @apply flex flex-row relative border border-gray-400 text-gray-400 rounded-md p-2;
+
+        &Count {
+            @apply inline-flex items-center border-l border-gray-400 ml-2 pl-2 justify-center;
+        }
+    }
+
+    &Content {
+        @apply absolute z-50 bg-white shadow top-11 w-80 max-h-80 overflow-auto origin-top right-0 p-2 border rounded-lg hidden;
+        min-height: 10rem;
+        max-height: 20rem;
+
+        &Wrap {
+            @apply w-full h-full;
+        }
+
+        &.open {
+            @apply block;
+        }
+    }
+
+    &List {
+        @apply flex flex-col gap-y-2;
+
+        &Item {
+            @apply flex flex-row gap-2;
+
+            &Left {
+                @apply inline-block h-auto w-fit;
+
+                &Img {
+                    @apply inline-flex items-center justify-center border border-gray-200 rounded overflow-hidden h-full w-20;
+
+                    img {
+                        @apply w-full h-auto;
+                    }
+                }
+            }
+
+            &Right {
+                @apply flex flex-1;
+
+                &Info {
+                    @apply flex flex-col gap-1 items-start justify-center;
+                }
+
+                &Count {
+                    @apply flex flex-col items-center justify-center gap-1;
+
+                    &Btn,
+                    input[type=number] {
+                        @apply border text-xs py-1 text-center text-gray-500 border-gray-300 bg-gray-50 rounded-md px-2 outline-none inline-block w-10;
+
+                        &::-webkit-outer-spin-button,
+                        &::-webkit-inner-spin-button {
+                            @apply appearance-none;
+                        }
+
+                    }
+
+                    &Btn {
+                        @apply flex items-center justify-center border-gray-100;
+                    }
+                }
+            }
+
+            &+& {
+                @apply border-t pt-2 border-gray-200;
+            }
+        }
+    }
+}

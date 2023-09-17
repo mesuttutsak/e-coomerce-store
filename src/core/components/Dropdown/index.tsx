@@ -28,6 +28,7 @@ const Dropdown = ({ children, className: customClassname = [], title, isOpen = t
                 <Text tag='h3' lineHeight='5' fontWeight={'semibold'}>{title}</Text>
             </label>
             <input id={'_DBControl' + title} name='dropdownControl' defaultChecked={isOpen} type='checkbox' />
+            <div className={styles.dropdownHeadingInspector}></div>
             <div className={renderClasses([styles.dropdownBody, isMore ? styles.more : ''])}>
                 {children}
             </div>
