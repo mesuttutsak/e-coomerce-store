@@ -1,9 +1,12 @@
-import { useSelector } from "react-redux";
+import { ChangeEvent, useEffect, useState, ReactNode } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import styles from "../productsPageSections.module.scss";
+
 import Dropdown from "../../../../Dropdown";
 import Section from "../../../../Section";
-import styles from "../productsPageSections.module.scss";
-import { ChangeEvent, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import Text from "../../../../Text";
+import { AiTwotoneStar } from "react-icons/ai";
 
 const updateFilterQuery = (changeParams: { key: string, value: string | number }, setState: any) => {
   const { key, value } = changeParams;
@@ -12,7 +15,7 @@ const updateFilterQuery = (changeParams: { key: string, value: string | number }
   setState((prevState: any) => {
     const updatedPrevState = { ...prevState };
     if (isPathKey) {
-
+      alert(1)
       const keys = key.split('_');
       let objToUpdate = updatedPrevState;
 
@@ -25,6 +28,8 @@ const updateFilterQuery = (changeParams: { key: string, value: string | number }
 
       const lastKey = keys[keys.length - 1];
       objToUpdate[lastKey] = value;
+    } else if (typeof updatedPrevState[key] == 'string' || typeof updatedPrevState[key] == 'number') {
+      updatedPrevState[key] = value;
     } else {
       updatedPrevState[key] = updatedPrevState[key].includes(value) ? updatedPrevState[key].filter((param: string) => param !== value) : [...updatedPrevState[key], value];
     }
@@ -32,9 +37,66 @@ const updateFilterQuery = (changeParams: { key: string, value: string | number }
   });
 }
 
+const findProductsLength = (arr: [], key: string, value?: string) => {
+  return value ? arr?.filter((item: any) => item[key].includes(value)).length : arr.length;
+}
 
-const findProductsLength = (arr: [], key:string, value:string) => {
-  return arr?.filter((item:any) => item[key].includes(value)).length;
+function onFilteringData(data: any, filterQuery?: any): any {
+
+  const result = data.filter((item: any) => {
+    const isInCategory = filterQuery['category'] === 'all' ? true : item['category'].toLowerCase().includes(filterQuery['category'].toLowerCase());
+    const isInBrand = filterQuery['brand'].length > 0 ? filterQuery['brand'].some((param: any) => item['brand'].toLowerCase().includes(param.toLowerCase())) : true;
+    const isInPrice = (filterQuery['price'].min < Number(item['price'])) && Number(item['price']) < filterQuery['price'].max;
+    const isHighestRating = filterQuery['rating'] <= Number(item['rating']);
+
+    return isInCategory && isInBrand && isInPrice && isHighestRating;
+  })
+
+  return result;
+}
+
+interface FilteringListItemProps {
+  children?: ReactNode;
+  placeholder?: string;
+  name: string;
+  type: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  defaultChecked?: boolean;
+  defaultVal?: string | number;
+  label?: string;
+  tag?: string;
+}
+
+const Item = ({ children, name, tag = "p", placeholder, type, onChange, value, defaultChecked, defaultVal, label }: FilteringListItemProps) => {
+  return (
+    type === "number" ?
+      <label className={styles.productsFilteringDropdownItem}>
+        <input
+          type={type}
+          name={name}
+          value={value}
+          defaultValue={defaultVal}
+          placeholder={placeholder}
+          min={0}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
+        />
+      </label>
+
+      :
+
+      <label className={styles.productsFilteringDropdownItem}>
+        <input
+          type={type}
+          name={name}
+          value={value}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
+          defaultChecked={defaultChecked}
+        />
+        {type == 'checkbox' && <span className={styles.checkmark}></span>}
+        <Text tag={tag} fontSize={"sm"}>{label ? label : children}</Text>
+      </label>
+  )
 }
 
 const Filtering = () => {
@@ -43,27 +105,15 @@ const Filtering = () => {
   const { filterOptions, products, filteredProducts } = useSelector((state: any) => state);
 
   const [currentData, setCurrentData] = useState<any>(null);
-
   const [filterQuery, setFilterQuery] = useState<any>({
-    category: [],
+    category: 'all',
     brand: [],
+    rating: 1,
     price: { min: 0, max: 9999999 }
   });
 
-  function onFilteringData(data: any, filterQuery?: any): any {
-
-    const result = data.filter((item: any) => {
-      const isInCategory = filterQuery['category'].length > 0 ? filterQuery['category'].some((param: any) => item['category'].toLowerCase().includes(param.toLowerCase())) : true;
-      const isInBrand = filterQuery['brand'].length > 0 ? filterQuery['brand'].some((param: any) => item['brand'].toLowerCase().includes(param.toLowerCase())) : true;
-      const isInPrice = (filterQuery['price'].min < Number(item['price'])) && Number(item['price']) < filterQuery['price'].max;
-      
-      return isInCategory && isInBrand && isInPrice;
-    })
-
-    return result;
-  }
-
   useEffect(() => {
+    console.log(filterQuery);
     dispatch({ type: "setFilteredProducts", payload: onFilteringData(products, filterQuery) });
     dispatch({ type: "setProductLength", payload: onFilteringData(products, filterQuery).length });
   }, [filterQuery]);
@@ -78,21 +128,42 @@ const Filtering = () => {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
+    updateFilterQuery({ key: name, value: (type === 'number' || name === 'rating') ? Number(value) : value }, setFilterQuery);
+  }
 
-    updateFilterQuery({ key: name, value: type === 'number' ? Number(value) : value }, setFilterQuery);
+  const calcRating = (mahmut: number, param: number) => {
+    return mahmut <= param
   }
 
   return (
     <Section className={[styles.productsFiltering]}>
       {currentData && <>
+
         <Dropdown title="Category">
-          {currentData.categories?.map((category: string, i:number) => <label key={category}><input type="checkbox" name="category" value={category} onChange={(e => handleInputChange(e))}/> {category} ({findProductsLength(filteredProducts,'category', category)})  <br /></label>)}
+          <Item type="radio" name="category" value="all" onChange={(e => handleInputChange(e))} defaultChecked={true}>All categories</Item>
+          {currentData.categories?.map((category: string, i: number) =>
+            <Item key={'category' + i} type="radio" name="category" value={category} onChange={(e => handleInputChange(e))}>{category} ({findProductsLength(products, 'category', category)})</Item>
+          )}
         </Dropdown>
         <Dropdown title="Brands">
-        {currentData.brands?.map((brand: string) =>  <label key={brand}><input key={brand} type="checkbox" name="brand" value={brand} onChange={(e => handleInputChange(e))} /> {brand} ({findProductsLength(filteredProducts,'brand', brand)})<br /></label>)}
+          {currentData.brands?.map((brand: string, i: number) => <Item key={'brand' + i} type="checkbox" name="brand" value={brand} onChange={(e => handleInputChange(e))}>{brand} ({findProductsLength(products, 'brand', brand)})</Item>)}
         </Dropdown>
-        <Dropdown title="Price" isOpen>
-          <input type="number" name="price_min" placeholder="min" defaultValue={currentData.minMaxPrice.min} onChange={(e => handleInputChange(e))} /> - <input name="price_max" placeholder="max" defaultValue={currentData.minMaxPrice.max} type="number" onChange={(e => handleInputChange(e))} />
+        <Dropdown title="Rating" isOpen showMore={false}>
+          <div className={styles.dropDownBodyContainer}>
+            {Array.from({ length: 5 }, (_, index) => index).map((count: any) => {
+              return <Item tag="span" type="radio" name="rating" value={count + 1} onChange={(e => handleInputChange(e))}>
+                <AiTwotoneStar size={20} color={calcRating(count + 1, filterQuery.rating) ? 'orange' : '#d3ccc5'} />
+              </Item>
+            })}
+          </div>
+        </Dropdown>
+        <Dropdown title="Price" isOpen showMore={false}>
+          <div className={styles.dropDownBodyContainer}>
+            <Item type="number" name="price_min" placeholder="min" defaultVal={currentData.minMaxPrice.min} onChange={(e => handleInputChange(e))} />
+            <Text lineHeight="none">-</Text>
+            <Item type="number" name="price_max" placeholder="max" defaultVal={currentData.minMaxPrice.max} onChange={(e => handleInputChange(e))} />
+            <Text lineHeight="none">$</Text>
+          </div>
         </Dropdown>
       </>
       }

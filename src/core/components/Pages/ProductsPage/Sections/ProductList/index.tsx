@@ -7,9 +7,10 @@ import { AiTwotoneStar } from "react-icons/ai";
 import Text from '../../../../Text';
 import { useSelector } from 'react-redux';
 import { log } from 'util';
+import { NavLink } from 'react-router-dom';
 
 const Item = ({ obj }: { obj: any }) => {
-  const [{ thumbnail, rating, price, discountPercentage, title, brand }] = useState<any>(obj);
+  const [{ id, thumbnail, rating, price, discountPercentage, title, brand }] = useState<any>(obj);
   const [ratingStarEls, setRatingStarEls] = useState<any>([]);
 
   useEffect(() => {
@@ -31,30 +32,33 @@ const Item = ({ obj }: { obj: any }) => {
 
   return (
     <li className={styles.productsBodyListItem}>
-      <span className={styles.productsBodyListItemImgTop}>
-        <img src={thumbnail} loading="lazy" alt={title} />
-      </span>
-      <div className={styles.productsBodyListItemBody}>
-        <div>
-          <Text tag='h3' fontWeight='medium'>{title}</Text>
+
+      <NavLink to={`/detail/${id}`}>
+        <span className={styles.productsBodyListItemImgTop}>
+          <img src={thumbnail} loading="lazy" alt={title} />
+        </span>
+        <div className={styles.productsBodyListItemBody}>
+          <div>
+            <Text tag='h3' fontWeight='medium'>{title}</Text>
+          </div>
+          <div className={styles.rating}>
+            <span className={styles.ratingStars}>
+              {ratingStarEls?.map((item: any, i: number) => <div key={i + '_star'}>{item} </div>)}
+            </span>
+            <Text >{calcPercent(4.631231234, 10, 1)}</Text>
+          </div>
+          <div>
+            <Text tag='h3' fontWeight='medium'>brand: {brand} </Text><br />
+            <Text tag='h3' fontWeight='medium'>price: ${price} </Text>
+          </div>
         </div>
-        <div className={styles.rating}>
-          <span className={styles.ratingStars}>
-            {ratingStarEls?.map((item: any, i: number) => <div key={i+'_star'}>{item} </div>)}
-          </span>
-          <Text >{calcPercent(4.631231234, 10, 1)}</Text>
-        </div>
-        <div>
-          <Text tag='h3' fontWeight='medium'>brand: {brand} </Text><br/>
-          <Text tag='h3' fontWeight='medium'>price: ${price} </Text>
-        </div>
-      </div>
+      </NavLink>
     </li>
   )
 }
 
 const ProductList = () => {
-  const { products, filteredProducts } = useSelector((state:any) => state);
+  const { filteredProducts } = useSelector((state: any) => state);
 
   return (
     <ul className={styles.productsBodyList}>

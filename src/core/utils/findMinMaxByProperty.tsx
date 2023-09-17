@@ -1,10 +1,6 @@
 export default function findMinMaxByProperty(objList: any[], property: string): { min: any, max: any } {
     if (objList.length === 0) {
-      throw new Error("Liste boş.");
-    }
-  
-    if (!(property in objList[0])) {
-      throw new Error("Belirtilen özellik mevcut değil.");
+      return { min:0, max:0 }
     }
   
     let min = objList[0][property];

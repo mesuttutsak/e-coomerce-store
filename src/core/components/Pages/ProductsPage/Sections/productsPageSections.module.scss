@@ -1,25 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '../../../../styes/globals.scss';
+
 .products {
     @apply flex flex-row flex-1 gap-6;
 
     section {}
 
     &Filtering {
-        @apply h-fit pb-7 sticky top-0;
+        @apply h-fit pb-7 sticky top-0 overflow-auto;
+        max-height: 100vh;
         width: 240px;
+
+        .dropDownBodyContainer {
+            @apply flex items-center justify-start gap-2;
+            line-height: 20px;
+            * {
+                line-height: 20px;
+            }
+        }
+
+        &DropdownItem {
+            @apply relative flex;
+
+            &:has(input[type=number]) {
+                @apply inline-flex;
+                min-width: 24px;
+            }
+
+            input {
+
+                &[type=radio],
+                &[type=checkbox] {
+                    @apply hidden;
+                }
+
+                &[type=radio] {
+                    &~* {
+                        @apply capitalize;
+                    }
+
+                    &:checked~* {
+                        @apply font-semibold text-blue-500;
+                    }
+                }
+
+                &[type=checkbox] {
+                    &~.checkmark {
+                        @apply absolute left-0 top-1/2 -translate-y-1/2 bg-gray-400;
+                        width: 10px;
+                        height: 10px;
+
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            display: none;
+                            left: 9px;
+                            top: 5px;
+                            width: 5px;
+                            height: 10px;
+                            border: solid white;
+                            border-width: 0 3px 3px 0;
+                            -webkit-transform: rotate(45deg);
+                            -ms-transform: rotate(45deg);
+                            transform: rotate(45deg);
+                        }
+                    }
+
+                    &~p {
+                        @apply pl-4;
+                    }
+
+                    &:checked~.checkmark {
+                        @apply font-semibold bg-blue-500;
+
+                        &:after {
+                            @apply block;
+                        }
+                    }
+                }
+
+                &[type=number] {
+                    @apply border text-xs py-1 text-gray-500 border-gray-300 bg-gray-100 rounded-md px-2 outline-none inline-block w-10;
+
+                    &::-webkit-outer-spin-button,
+                    &::-webkit-inner-spin-button {
+                        @apply appearance-none;
+                    }
+
+                }
+            }
+
+            &+& {
+                @apply mt-1;
+            }
+        }
     }
 
     &Body {
         @apply flex flex-col flex-1 gap-5;
 
         &Headline {
-            @apply flex items-center justify-start h-16 p-3 bg-white border border-gray-300  border rounded-lg;
+            @apply flex items-center justify-between h-14 p-3 bg-white border border-gray-300 border rounded-lg;
         }
 
         &List {
             @apply flex flex-wrap gap-4;
 
             &Item {
-                @apply border bg-white border-gray-300  border rounded-md overflow-hidden;
+                @apply border bg-white border-gray-300 border rounded-md overflow-hidden;
                 width: calc((100% - 2rem) / 3);
 
                 &ImgTop {
@@ -34,10 +124,11 @@
                 }
 
                 &Body {
-                    @apply flex  flex-col p-3;
+                    @apply flex flex-col p-3;
 
                     .rating {
                         @apply flex flex-row items-center justify-start gap-2 capitalize;
+
                         &Stars {
                             @apply flex flex-row;
                         }

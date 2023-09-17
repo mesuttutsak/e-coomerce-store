@@ -10,14 +10,27 @@
     }
 
     &Body {
-        @apply hidden pb-7;
+        @apply hidden pb-7 overflow-hidden;
+        max-height: 9999px;
+        
+        &.more {
+            max-height: 88px;
+        }
+    }
+
+    &Footer {
+        @apply hidden flex-row items-center justify-center mb-2; 
+        button {
+            @apply flex flex-row m-auto;
+        }
     }
 
     input[name=dropdownControl] {
         @apply hidden;
 
         &:checked {
-            &~.dropdownBody {
+            &~.dropdownBody,
+            &~.dropdownFooter {
                 @apply block;
             }
         }
