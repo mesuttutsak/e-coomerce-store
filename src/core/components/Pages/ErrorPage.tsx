@@ -4,7 +4,6 @@ import Alert from '../Alert';
 import Text from '../Text';
 
 const ErrorPage = () => {
-    const navigate = useNavigate();
     
     return (
         <MainLayout>
@@ -12,7 +11,7 @@ const ErrorPage = () => {
                 <Link className='mt-5' to="/" >
                     <Alert className={['p-5']} >
                         <Text fontSize='lg' fontWeight='semibold' lineHeight='10'>
-                            upPS!! <br />
+                            UPPS!! <br />
                             Something went wrong :/
                         </Text>
                     </Alert>

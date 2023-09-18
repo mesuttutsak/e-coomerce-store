@@ -19,7 +19,7 @@ const Headline = () => {
            <Text fontSize="md" fontWeight="semibold">{filteredProducts?.length}</Text>&nbsp;<Text>filtered out of</Text>&nbsp;<Text fontSize="md" fontWeight="semibold">{products.length}</Text>&nbsp;<Text fontSize="sm"> results are listed for the search "{searchText}"</Text>
 
           </> :
-            <Text>no results found</Text>
+            <Text>Not found for search "{searchText}".</Text>
         }</> : '...'}
       </span>
 

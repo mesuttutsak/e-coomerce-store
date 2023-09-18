@@ -48,7 +48,8 @@ const ProductList = () => {
 
   return (<>
     {!productsLoading ?
-      products.length == 0 ? <Alert>No product found as a result of the search</Alert> :
+      products.length === 0 ? <Alert>No product found as a result of the search.</Alert> :
+      products.length > 0 && filteredProducts.length === 0 ? <Alert>No filtered product found.</Alert> :
       <ul className={styles.productsBodyList} >
         {
           filteredProducts?.slice(0, showLimit).map((item: any) => <Item key={item.id} obj={item} />)

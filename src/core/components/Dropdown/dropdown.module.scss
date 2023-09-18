@@ -2,7 +2,7 @@
     @apply relative border-t border-gray-300;
 
     &Heading {
-        @apply block py-3;
+        @apply block py-3 cursor-pointer;
 
         &Inspector {
             @apply absolute inline-flex items-center justify-center right-0 top-3;

@@ -6,6 +6,7 @@
     &Filtering {
         @apply h-fit pb-7 fixed lg:sticky top-0 overflow-hidden lg:overflow-auto transition-all;
         background: #F7FAFC;
+        min-width: 280px;
 
         .mobileBtn {
             &Cont {
@@ -34,7 +35,7 @@
         }
 
         &DropdownItem {
-            @apply relative flex;
+            @apply relative flex cursor-pointer;
 
             &:has(input[type=number]) {
                 @apply inline-flex;

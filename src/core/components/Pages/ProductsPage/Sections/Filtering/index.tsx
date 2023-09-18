@@ -9,6 +9,13 @@ import Text from "../../../../Text";
 import { AiTwotoneStar } from "react-icons/ai";
 import { RiMenuFoldLine, RiMenuUnfoldFill } from "react-icons/ri";
 import Button from "../../../../Button";
+import findMinMaxByProperty from "../../../../../utils/findMinMaxByProperty";
+
+interface FilterDataOptions {
+  brands: string[];
+  categories: string[];
+  minMaxPrice: { min: number, max: number };
+};
 
 const updateFilterQuery = (changeParams: { key: string, value: string | number }, setState: any) => {
   const { key, value } = changeParams;
@@ -177,12 +184,12 @@ const Filtering = () => {
 
   return (
     <Section className={[styles.productsFiltering, openFiltering ? styles.open : '']}>
-      {currentData && categoryFilteredData && <>
+      <>
         <div className={styles.mobileBtnCont}>
          <Button className={[styles.mobileBtn]} onClick={() => dispatch({ type: "setOpenFiltering", payload: false })}>{openFiltering ? <RiMenuFoldLine size={30} color="#9ca3af"/> : <RiMenuUnfoldFill size={30} color="#9ca3af"/>}</Button>
         </div>
-        <Dropdown className={[styles.dropdownFilter]} title={`Category (${currentData.categories?.length})`}>
-          {!productsLoading ? <>
+        <Dropdown className={[styles.dropdownFilter]} title={`Category ${ currentData && categoryFilteredData ? '('+currentData.categories?.length+')' : ''}`}>
+          {!productsLoading && currentData && categoryFilteredData ? <>
 
             <Item type="radio" name="category" value="all" onChange={(e => handleInputChange(e))} defaultChecked={true}>All categories</Item>
 
@@ -193,8 +200,8 @@ const Filtering = () => {
           </> : <>Loading...</>}
         </Dropdown>
 
-        <Dropdown className={[styles.dropdownFilter]} title={`Brands (${isInCategory(currentData.brands, categoryFilteredData, 'brand')?.length})`}>
-          {!productsLoading ? <>
+        <Dropdown className={[styles.dropdownFilter]} title={`Brands ${ currentData && categoryFilteredData ? '('+isInCategory(currentData.brands, categoryFilteredData, 'brand')?.length+')' : ''}`}>
+          {!productsLoading && currentData && categoryFilteredData ? <>
 
             {
               isInCategory(currentData.brands, categoryFilteredData, 'brand').map((brand: string, i: number) => <Item key={'brand' + i} type="checkbox" name="brand" value={brand} onChange={(e => handleInputChange(e))}>{brand} ({findProductsLength(products, 'brand', brand)})</Item>)
@@ -202,8 +209,9 @@ const Filtering = () => {
 
           </> : <>Loading...</>}
         </Dropdown>
+
         <Dropdown className={[styles.dropdownFilter]} title="Rating" isOpen showMore={false}>
-          {!productsLoading ? <>
+          {!productsLoading && currentData && categoryFilteredData ? <>
 
             <div className={styles.dropDownBodyContainer}>
               {Array.from({ length: 5 }, (_, index) => index).map((count: any) => {
@@ -215,8 +223,9 @@ const Filtering = () => {
 
           </> : <>Loading...</>}
         </Dropdown>
+
         <Dropdown className={[styles.dropdownFilter]} title="Price" isOpen showMore={false}>
-          {!productsLoading ? <>
+          {!productsLoading && currentData && categoryFilteredData ? <>
             <div className={styles.dropDownBodyContainer}>
               <Item type="number" name="price_min" placeholder="min" defaultVal={currentData.minMaxPrice.min} onChange={(e => handleInputChange(e))} />
               <Text lineHeight="none">-</Text>
@@ -227,7 +236,6 @@ const Filtering = () => {
           </> : <>Loading...</>}
         </Dropdown>
       </>
-      }
     </Section >
   )
 }
