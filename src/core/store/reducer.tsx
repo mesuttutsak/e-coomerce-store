@@ -9,6 +9,7 @@ export type BasketItem = {
 export type BasketList = BasketItem[]
 
 export type AppState = {
+  productsLoading: boolean;
   products: object[];
   basket: BasketList;
   filteredProducts: object[];
@@ -21,10 +22,12 @@ export type AppState = {
     categories: string[];
     brands: string[];
     minMaxPrice: {min: number, max: number};
-  } | null
+  } | null;
+  openFiltering: boolean;
 };
 
 const initialState : AppState = {
+  productsLoading: true,
   products: [],
   basket: [],
   filteredProducts: [],
@@ -33,14 +36,20 @@ const initialState : AppState = {
   minMaxPrice: {min: 0, max:0},
   filterOptions: null,
   productLength: null,
-  searchText: ''
+  searchText: '',
+  openFiltering: false
 };
 
 export const reducer = (state : AppState = initialState, action:any) => {
   switch (action.type) {
+    case "setProductsLoading": {
+      return { ...state, productsLoading: action.payload };
+    }
+
     case "setProducts": {
       return { ...state, products: action.payload };
     }
+
     case "setBasket": {
       return { ...state, basket: action.payload };
     }
@@ -57,6 +66,9 @@ export const reducer = (state : AppState = initialState, action:any) => {
     }
     case "setSearchText": {
       return { ...state, searchText: action.payload };
+    }
+    case "setOpenFiltering": {
+      return { ...state, openFiltering: action.payload };
     }
     default:
       return state;

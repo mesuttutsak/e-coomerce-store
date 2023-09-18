@@ -2,10 +2,10 @@
     @apply relative;
 
     &Btn {
-        @apply flex flex-row relative border border-gray-400 text-gray-400 rounded-md p-2;
+        @apply flex flex-row relative border border-gray-300 text-gray-400 rounded-md p-2;
 
         &Count {
-            @apply inline-flex items-center border-l border-gray-400 ml-2 pl-2 justify-center;
+            @apply inline-flex items-center border-l border-gray-300 ml-2 pl-2 justify-center;
         }
 
         &:hover {
@@ -24,21 +24,25 @@
             }
 
             &:hover {
-                @apply bg-white border-blue-600 text-white;
+                @apply  border-blue-600 text-white;
                 * {
-                    @apply border-blue-600;
+                    @apply border-blue-600 text-white;
                 }
             }
         }
     }
 
     &Content {
-        @apply absolute z-50 bg-white shadow top-11 w-80 max-h-80 overflow-auto origin-top right-0 p-2 border rounded-lg hidden;
-        min-height: 10rem;
-        max-height: 20rem;
+        @apply absolute flex z-50 bg-white shadow top-11 w-80 max-h-80 overflow-auto origin-top right-0 p-2 border rounded-lg hidden;
+        min-height: fit-content;
+        max-height: 50rem;
 
         &Wrap {
-            @apply w-full h-full;
+            @apply flex items-center justify-center min-w-full min-h-full;
+
+            &Info {
+                @apply flex flex-col gap-4 items-center py-5;
+            }
         }
 
         &.open {
@@ -75,7 +79,7 @@
                         @apply w-full border-b border-gray-100;
 
                         &:hover {
-                            @apply border-gray-400
+                            @apply border-gray-300
                         }
                     }
                 }

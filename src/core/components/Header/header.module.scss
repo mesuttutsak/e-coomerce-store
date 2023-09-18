@@ -5,13 +5,27 @@
         @apply flex items-center justify-center flex-wrap gap-x-5;
 
         a {
-            @apply relative flex flex-row items-center justify-center gap-2 border border-gray-400 text-gray-400 rounded-md p-2;
+            @apply relative flex flex-row items-center justify-center gap-2 border border-gray-300 text-gray-400 rounded-md p-2;
 
             &:hover, &:active, &.active {
                 @apply   border-blue-600 text-blue-600;
             }
 
-            &.active { @apply bg-blue-600 text-white; }
+            &.active { @apply bg-blue-600 text-white pointer-events-none; }
+        }
+    }
+
+    .mobileBtn {
+        &Cont {
+            @apply  lg:hidden flex pr-2 justify-end;
+        }
+
+        button {
+            @apply p-2 border border-gray-300 text-gray-400;
+
+            svg {
+                @apply text-gray-500;
+            }
         }
     }
 }

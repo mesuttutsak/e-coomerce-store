@@ -19,7 +19,7 @@ const Button = ({
 
   return (
     <button
-      className={renderClasses([...customClassname])}
+      className={renderClasses(['button ', ...customClassname])}
       type={type}
       onClick={onClick}
       disabled={isDisabled}

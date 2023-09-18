@@ -18,4 +18,4 @@ export default function request(urlPath: string, method : 'GET' | 'POST' | 'DELE
 
 }
 
-export const get = (urlPath: string) => request(urlPath)
+export const get = (urlPath: string) => request(urlPath);

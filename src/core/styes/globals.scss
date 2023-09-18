@@ -32,3 +32,10 @@ main {
     @apply container mx-auto px-3;
     max-width: 1024px;
 }
+
+button, a {
+    @apply scale-100;
+    &:active {
+        @apply scale-95;
+    }
+}

@@ -6,19 +6,21 @@ import DebounceInput from "../../../../FormElements/DebounceInput";
 const Headline = () => {
   const dispatch = useDispatch();
 
-  const { products, searchText } = useSelector((state: any) => state);
+  const { products, productsLoading, filteredProducts, searchText } = useSelector((state: any) => state);
 
   return (
     <div className={styles.productsBodyHeadline}>
       <span>
+        {!productsLoading ? <>
         {products.length > 0 && searchText === "" ? <>
-          <Text fontSize="md" fontWeight="semibold">{products.length}</Text>&nbsp;<Text fontSize="sm">results are listed.</Text>
+        <Text fontSize="md" fontWeight="semibold">{filteredProducts?.length}</Text>&nbsp;<Text>filtered out of</Text>&nbsp;<Text fontSize="md" fontWeight="semibold">{products.length}</Text>&nbsp;<Text fontSize="sm">results are listed.</Text>
         </> :
           products.length > 0 ? <>
-            <Text fontSize="md" fontWeight="semibold">{products.length}</Text>&nbsp;<Text fontSize="sm"> results are listed for the search "{searchText}"</Text>
+           <Text fontSize="md" fontWeight="semibold">{filteredProducts?.length}</Text>&nbsp;<Text>filtered out of</Text>&nbsp;<Text fontSize="md" fontWeight="semibold">{products.length}</Text>&nbsp;<Text fontSize="sm"> results are listed for the search "{searchText}"</Text>
+
           </> :
             <Text>no results found</Text>
-        }
+        }</> : '...'}
       </span>
 
       <DebounceInput id='search' placeholder="Search in products details..." value={searchText} onInputValue={(value: string) => dispatch({ type: "setSearchText", payload: value })} setLoading={() => null} />

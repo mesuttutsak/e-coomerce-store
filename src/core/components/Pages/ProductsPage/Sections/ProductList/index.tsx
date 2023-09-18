@@ -9,6 +9,8 @@ import { useSelector } from 'react-redux';
 import { log } from 'util';
 import { NavLink } from 'react-router-dom';
 import RatingStars from '../../../../RatingStars';
+import Button from '../../../../Button';
+import Alert from '../../../../Alert';
 
 const Item = ({ obj }: { obj: any }) => {
   const [{ id, thumbnail, rating, price, title, brand }] = useState<any>(obj);
@@ -22,7 +24,7 @@ const Item = ({ obj }: { obj: any }) => {
         </span>
         <div className={styles.productsBodyListItemBody}>
           <div>
-            <Text tag='h3' fontSize='md' fontWeight='semibold'>{title}</Text>
+            <Text tag='h3' fontSize='' fontWeight='semibold'>{title}</Text>
           </div>
           <div className={styles.rating}>
             <span className={styles.ratingStars}>
@@ -41,14 +43,21 @@ const Item = ({ obj }: { obj: any }) => {
 }
 
 const ProductList = () => {
-  const { filteredProducts } = useSelector((state: any) => state);
+  const { filteredProducts, products, productsLoading } = useSelector((state: any) => state);
+  const [showLimit, setShowLimit] = useState(15);
 
-  return (
-    <ul className={styles.productsBodyList}>
-      {
-        filteredProducts?.map((item: any) => <Item key={item.id} obj={item} />)
-      }
-    </ul>
+  return (<>
+    {!productsLoading ?
+      products.length == 0 ? <Alert>No product found as a result of the search</Alert> :
+      <ul className={styles.productsBodyList} >
+        {
+          filteredProducts?.slice(0, showLimit).map((item: any) => <Item key={item.id} obj={item} />)
+        }
+
+        {filteredProducts.length > showLimit && <div className={styles.productsBodyListShowMore}> <Button className={[styles.productsBodyListShowMoreBtn]} onClick={() => setShowLimit(prevState => prevState += 15)}>Show More</Button> </div>}
+      </ul> : <>loading list...</>
+    }
+  </>
   )
 }
 

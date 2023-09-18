@@ -1,0 +1,7 @@
+.alert {
+    @apply text-center text-xs inline-flex bg-blue-500 text-white m-auto px-4 py-3 rounded relative;
+
+    &.danger {
+        @apply bg-red-500 border text-white;
+    }
+}

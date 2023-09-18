@@ -1,9 +1,13 @@
 .detail {
-    @apply flex flex-row gap-10;
+    @apply flex flex-col sm:flex-row gap-5 xl:gap-10;
 
     &Img {
         @apply w-full;
         max-width: 400px;
+
+        @media (max-width: 640px) {
+            max-width: 100%;
+        }
     }
 
     &Info {
@@ -31,15 +35,15 @@
 
 
         &Actions {
-            @apply flex flex-row gap-5;
+            @apply flex flex-wrap gap-2 sm:gap-5;
 
 
             &Buy {
-                @apply cursor-pointer flex flex-row w-fit relative bg-blue-600 text-white rounded-md p-3;
+                @apply min-w-full sm:w-fit cursor-pointer flex flex-row items-center justify-center w-fit relative bg-blue-600 text-white rounded-md p-3;
             }
 
             &Count {
-                @apply flex flex-row items-center justify-center gap-1;
+                @apply flex flex-row items-center justify-center w-full sm:w-fit gap-1;
 
                 &Btn,
                 input {
@@ -51,7 +55,7 @@
                 }
 
                 &Btn {
-                    @apply flex items-center justify-center;
+                    @apply flex items-center justify-center w-full sm:w-fit;
 
                     &:disabled {
                         @apply opacity-50;

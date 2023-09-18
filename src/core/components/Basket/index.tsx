@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { renderClasses } from "../../utils/renderClasses";
 import { findBasketItemCount, inputControl, uptBasketObject } from "../Pages/ProductDetailPage/Sections/DetailInfo";
 import { NavLink, useNavigate } from "react-router-dom";
+import Alert from "../Alert";
 
 const Item = ({ item }: { item: BasketItem }) => {
     const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const Item = ({ item }: { item: BasketItem }) => {
                 <Button className={[styles.basketListItemRightCountBtn]} onClick={() => countOperation('inc')}>
                     <BiPlus />
                 </Button>
-                <input min={0} max={stock} type="text" value={itemCount?.toString()} onChange={(e: any) => { inputControl(e.target, count, stock);  return countOperation('change', Number(e.target.value)); }} />
+                <input min={0} max={stock} type="text" value={itemCount?.toString()} onChange={(e: any) => { inputControl(e.target, count, stock); return countOperation('change', Number(e.target.value)); }} />
                 <Button className={[styles.basketListItemRightCountBtn]} isDisabled={itemCount <= 0} onClick={() => countOperation('dec')}>
                     <BiMinus />
                 </Button>
@@ -75,10 +76,10 @@ const Basket = () => {
 
         <div className={styles.basket}>
             <Button className={[styles.basketBtn, (isOpen ? styles.active : '')]} onClick={() => setIsOpen(prevState => !prevState)}>
-                <AiOutlineShoppingCart />
+                <AiOutlineShoppingCart size={14} />
                 {basket.length > 0 &&
                     <span className={styles.basketBtnCount}>
-                        <Text>{basketProductsLength(basket)}</Text>
+                        <Text lineHeight="none">{basketProductsLength(basket)}</Text>
                     </span>
                 }
             </Button>
@@ -88,8 +89,14 @@ const Basket = () => {
                         basket.length > 0 ? <>
                             <ul className={styles.basketList}>
                                 {basket.map((item: BasketItem, i: number) => <Item key={i + item.title + item.id} item={item} />)}
-                            </ul></> : <> <NavLink to='/'>Buy Product</NavLink>
-                        </>
+                            </ul></> : (
+                            <div className={styles.basketContentWrapInfo}>
+                                <Text fontSize="md" fontWeight="medium">Your basket is empty.</Text>
+                                <NavLink to='/'>
+                                    <Alert>Start shopping!</Alert>
+                                </NavLink>
+                            </div>
+                        )
                     }
                 </div>
             </div>
