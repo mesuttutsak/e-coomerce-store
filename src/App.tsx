@@ -1,8 +1,7 @@
-import { Routes, Route, Link, NavLink } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import ProductsPage from './core/components/Pages/ProductsPage';
 import Page404 from "./core/components/Pages/Page404";
-import DetailLayout from "./core/layouts/DetailLayout";
 import ProductDetailPage from "./core/components/Pages/ProductDetailPage";
 
 function App() {

@@ -12,7 +12,7 @@ import { BiPlus, BiMinus } from "react-icons/bi";
 import Text from "../Text";
 import { useEffect, useState } from "react";
 import { renderClasses } from "../../utils/renderClasses";
-import { findBasketItemCount, uptBasketObject } from "../Pages/ProductDetailPage";
+import { findBasketItemCount, uptBasketObject } from "../Pages/ProductDetailPage/Sections/DetailInfo";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Item = ({ item }: { item: BasketItem }) => {
@@ -26,9 +26,9 @@ const Item = ({ item }: { item: BasketItem }) => {
     function countOperation(action: 'incr' | 'decr') {
 
         if (action === "incr") {
-            dispatch({ type: "setBasket", payload: uptBasketObject(basket, item, id, 'inc') })
+            dispatch({ type: "setBasket", payload: uptBasketObject(basket, item, Number(id), 'inc') })
         } else if (action === "decr") {
-            dispatch({ type: "setBasket", payload: uptBasketObject(basket, item, id, 'dic') })
+            dispatch({ type: "setBasket", payload: uptBasketObject(basket, item, Number(id), 'dec') })
         }
 
     }

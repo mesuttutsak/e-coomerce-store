@@ -1,7 +1,5 @@
-'use client'
-import React, { useEffect } from "react";
+import React from "react";
 import { renderClasses } from "../../utils/renderClasses";
-import { log } from "console";
 
 interface ButtonProps {
   children?: React.ReactNode;
@@ -16,12 +14,12 @@ const Button = ({
   type = "button",
   isDisabled = false,
   onClick,
-  className : customClassname = [],
+  className: customClassname = [],
 }: ButtonProps) => {
 
   return (
     <button
-      className={renderClasses([`button`, ...customClassname])}
+      className={renderClasses([...customClassname])}
       type={type}
       onClick={onClick}
       disabled={isDisabled}

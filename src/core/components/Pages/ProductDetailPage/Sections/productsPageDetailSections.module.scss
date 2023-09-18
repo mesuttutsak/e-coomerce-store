@@ -1,0 +1,65 @@
+.detail {
+    @apply flex flex-row gap-10;
+
+    &Img {
+        @apply w-full;
+        max-width: 400px;
+    }
+
+    &Info {
+        @apply flex flex-col flex-1 w-full gap-5;
+
+        &Headline {
+            @apply flex flex-col items-start mb-1 gap-2;
+
+            &Top {
+                @apply flex flex-row flex-wrap gap-2;
+
+                * {
+                    @apply whitespace-nowrap;
+                }
+            }
+
+            &Bottom {
+                @apply flex flex-row gap-x-1;
+            }
+
+            &Title {
+                @apply inline-flex flex-row items-center justify-start text-green-400;
+            }
+        }
+
+
+        &Actions {
+            @apply flex flex-row gap-5;
+
+
+            &Buy {
+                @apply cursor-pointer flex flex-row w-fit relative bg-blue-600 text-white rounded-md p-3;
+            }
+
+            &Count {
+                @apply flex flex-row items-center justify-center gap-1;
+
+                &Btn,
+                input {
+                    @apply border text-xs py-3 text-center text-gray-500 border-gray-300 bg-white rounded-md px-2 outline-none inline-block w-10;
+
+                    &::-webkit-outer-spin-button,
+                    &::-webkit-inner-spin-button {
+                        @apply appearance-none;
+                    }
+
+                }
+
+                &Btn {
+                    @apply flex items-center justify-center;
+
+                    &:disabled {
+                        @apply opacity-50;
+                    }
+                }
+            }
+        }
+    }
+}
