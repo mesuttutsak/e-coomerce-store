@@ -123,8 +123,6 @@ const Filtering = () => {
   });
 
   useEffect(() => {
-
-    console.log('1', filterQuery);
     if (products) {
       if (categoryFilterParam === "all") {
         setCategoryFilteredData(products);
