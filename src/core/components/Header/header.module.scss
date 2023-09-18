@@ -1,3 +1,17 @@
 .headerWrap {
-    @apply flex flex-row justify-between items-center;
+    @apply flex flex-row justify-between items-center py-3;
+
+    &Left {
+        @apply flex items-center justify-center flex-wrap gap-x-5;
+
+        a {
+            @apply relative flex flex-row items-center justify-center gap-2 border border-gray-400 text-gray-400 rounded-md p-2;
+
+            &:hover, &:active, &.active {
+                @apply   border-blue-600 text-blue-600;
+            }
+
+            &.active { @apply bg-blue-600 text-white; }
+        }
+    }
 }

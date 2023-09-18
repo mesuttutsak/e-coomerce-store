@@ -4,6 +4,7 @@ export type BasketItem = {
   description: string;
   thumbnail: string;
   count: number;
+  stock: number;
 }
 export type BasketList = BasketItem[]
 

@@ -22,7 +22,7 @@ const Item = ({ obj }: { obj: any }) => {
         </span>
         <div className={styles.productsBodyListItemBody}>
           <div>
-            <Text tag='h3' fontWeight='medium'>{title}</Text>
+            <Text tag='h3' fontSize='md' fontWeight='semibold'>{title}</Text>
           </div>
           <div className={styles.rating}>
             <span className={styles.ratingStars}>
@@ -31,8 +31,8 @@ const Item = ({ obj }: { obj: any }) => {
             <Text>({calcPercent(rating, 10)})</Text>
           </div>
           <div>
-            <Text tag='h3' fontWeight='medium'>brand: {brand} </Text><br />
-            <Text tag='h3' fontWeight='medium'>price: ${price} </Text>
+            <Text tag='h4' fontWeight='medium'>brand: {brand} </Text><br />
+            <Text tag='h4' fontWeight='medium'>price: ${price} </Text>
           </div>
         </div>
       </NavLink>

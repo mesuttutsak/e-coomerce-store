@@ -44,12 +44,10 @@
                 &Btn,
                 input {
                     @apply border text-xs py-3 text-center text-gray-500 border-gray-300 bg-white rounded-md px-2 outline-none inline-block w-10;
+                }
 
-                    &::-webkit-outer-spin-button,
-                    &::-webkit-inner-spin-button {
-                        @apply appearance-none;
-                    }
-
+                input:focus {
+                    @apply border-blue-600
                 }
 
                 &Btn {
@@ -57,6 +55,16 @@
 
                     &:disabled {
                         @apply opacity-50;
+                    }
+
+                    &:not(:disabled) {
+                        &:hover {
+                            @apply border-blue-600 text-blue-600;
+                        }
+
+                        &:active {
+                            @apply bg-blue-600 text-white;
+                        }
                     }
                 }
             }

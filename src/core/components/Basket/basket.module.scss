@@ -7,6 +7,29 @@
         &Count {
             @apply inline-flex items-center border-l border-gray-400 ml-2 pl-2 justify-center;
         }
+
+        &:hover {
+            @apply border-blue-600 text-blue-600 bg-white;
+
+            * {
+                @apply border-blue-600 text-blue-600;
+            }
+        }
+
+        &.active {
+            @apply bg-blue-600 border-blue-600 text-white;
+            
+            * {
+                @apply border-white;
+            }
+
+            &:hover {
+                @apply bg-white border-blue-600 text-white;
+                * {
+                    @apply border-blue-600;
+                }
+            }
+        }
     }
 
     &Content {
@@ -40,27 +63,29 @@
                     }
                 }
             }
-            
+
 
             &Right {
-                @apply flex flex-1;
+                @apply flex flex-1 gap-1;
 
                 &Info {
                     @apply flex flex-col gap-1 items-start justify-center;
+
+                    a {
+                        @apply w-full border-b border-gray-100;
+
+                        &:hover {
+                            @apply border-gray-400
+                        }
+                    }
                 }
 
                 &Count {
                     @apply flex flex-col items-center justify-center gap-1;
 
                     &Btn,
-                    input[type=number] {
+                    input[type=text] {
                         @apply border text-xs py-1 text-center text-gray-500 border-gray-300 bg-gray-50 rounded-md px-2 outline-none inline-block w-10;
-
-                        &::-webkit-outer-spin-button,
-                        &::-webkit-inner-spin-button {
-                            @apply appearance-none;
-                        }
-
                     }
 
                     &Btn {

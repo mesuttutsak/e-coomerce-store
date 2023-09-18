@@ -10,7 +10,7 @@ import styles from "../productsPageDetailSections.module.scss";
 import RatingStars from '../../../../RatingStars';
 import { BiMinus, BiPlus } from 'react-icons/bi';
 
-function inputControl(target:any, currentCount:number,stock:number,) {;
+export function inputControl(target:any, currentCount:number,stock:number,) {;
     const value = target.value;
     const valToStr = value?.toString();
     const regex = /^[0-9]*$/;
@@ -36,6 +36,7 @@ export function uptBasketObject(list: any[], data: any, id: number, action: 'inc
         title: data.title,
         description: data.description,
         thumbnail: data.thumbnail,
+        stock: data.stock,
         count: 1,
     }
 
