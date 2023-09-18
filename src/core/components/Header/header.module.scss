@@ -2,7 +2,7 @@
     @apply flex flex-row justify-between items-center py-3;
 
     &Left {
-        @apply flex items-center justify-center flex-wrap gap-x-5;
+        @apply flex items-center justify-center flex-wrap gap-x-2;
 
         a {
             @apply relative flex flex-row items-center justify-center gap-2 border border-gray-300 text-gray-400 rounded-md p-2;

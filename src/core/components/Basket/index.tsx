@@ -92,7 +92,9 @@ const Basket = () => {
                             </ul></> : (
                             <div className={styles.basketContentWrapInfo}>
                                 <Text fontSize="md" fontWeight="medium">Your basket is empty.</Text>
-                                <NavLink to='/'>
+                                <NavLink onClick={() => {
+                                    setIsOpen(false);
+                                }} to='/'>
                                     <Alert>Start shopping!</Alert>
                                 </NavLink>
                             </div>

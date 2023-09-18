@@ -33,9 +33,15 @@
     }
 
     &Content {
-        @apply absolute flex z-50 bg-white shadow top-11 w-80 max-h-80 overflow-auto origin-top right-0 p-2 border rounded-lg hidden;
+        @apply absolute flex z-50 bg-white shadow top-11 w-80 overflow-auto origin-top right-0 p-2 border rounded-lg hidden;
         min-height: fit-content;
-        max-height: 50rem;
+        max-height: 80vh;
+
+        
+
+        @media (max-width: 1024px) {
+            max-width: calc(100vw - 1.5rem);
+        }
 
         &Wrap {
             @apply flex items-center justify-center min-w-full min-h-full;

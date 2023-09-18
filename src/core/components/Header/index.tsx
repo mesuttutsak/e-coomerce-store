@@ -16,7 +16,7 @@ const Header = () => {
   const { openFiltering } = useSelector((state: any) => state);
 
   useEffect(() => {
-    !location.pathname.split('/').every(item => item === "/" || item === "") && dispatch({ type: "setOpenFiltering", payload: true });
+    !location.pathname.split('/').every(item => item === "/" || item === "") && dispatch({ type: "setOpenFiltering", payload: false });
   }, [])
 
   return (

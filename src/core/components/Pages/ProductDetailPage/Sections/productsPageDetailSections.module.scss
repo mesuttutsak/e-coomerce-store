@@ -39,7 +39,7 @@
 
 
             &Buy {
-                @apply min-w-full sm:w-fit cursor-pointer flex flex-row items-center justify-center w-fit relative bg-blue-600 text-white rounded-md p-3;
+                @apply min-w-full sm:min-w-fit sm:w-fit cursor-pointer flex flex-row items-center justify-center w-fit relative bg-blue-600 text-white rounded-md p-3;
             }
 
             &Count {
