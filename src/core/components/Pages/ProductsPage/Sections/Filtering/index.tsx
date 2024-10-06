@@ -39,18 +39,18 @@ const updateFilterQuery = (changeParams: { key: string, value: string | number }
     } else if (typeof updatedPrevState[key] == 'string' || typeof updatedPrevState[key] == 'number') {
       updatedPrevState[key] = value;
     } else {
-      updatedPrevState[key] = updatedPrevState[key].includes(value) ? updatedPrevState[key].filter((param: string) => param !== value) : [...updatedPrevState[key], value];
+      updatedPrevState[key] = updatedPrevState[key]?.includes(value) ? updatedPrevState[key].filter((param: string) => param !== value) : [...updatedPrevState[key], value];
     }
     return updatedPrevState;
   });
 }
 
 const findProductsLength = (arr: [], key: string, value?: string) => {
-  return value ? arr?.filter((item: any) => item[key].includes(value)).length : arr.length;
+  return value ? arr?.filter((item: any) => item[key]?.includes(value)).length : arr.length;
 }
 
 const isInCategory = (data: string[], products: [], category: string): string[] => {
-  const result = data.filter((param: string) => products.some((product: any) => product[category].toLowerCase().includes(param.toLowerCase())));
+  const result = data.filter((param: string) => products.some((product: any) => product[category]?.toLowerCase()?.includes(param?.toLowerCase())));
 
   return [...result]
 }
@@ -59,8 +59,8 @@ function onFilteringData(data: any, filterQuery?: any, categoryQuery?: string, o
 
   const result = data?.filter((item: any) => {
     const filterResult: any = {
-      isInCategory: () => categoryQuery === 'all' ? true : item['category'].toLowerCase().includes(categoryQuery?.toLowerCase()),
-      isInBrand: () => filterQuery['brand'].length > 0 ? filterQuery['brand'].some((param: any) => item['brand'].toLowerCase().includes(param.toLowerCase())) : true,
+      isInCategory: () => categoryQuery === 'all' ? true : item['category']?.toLowerCase()?.includes(categoryQuery?.toLowerCase()),
+      isInBrand: () => filterQuery['brand'].length > 0 ? filterQuery['brand'].some((param: any) => item['brand']?.toLowerCase()?.includes(param?.toLowerCase())) : true,
       isInPrice: () => (filterQuery['price'].min < Number(item['price'])) && Number(item['price']) < filterQuery['price'].max,
       isHighestRating: () => (filterQuery['rating'] - .5) <= Number(item['rating'])
     }
