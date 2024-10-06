@@ -73,10 +73,6 @@ The project consists of 3 pages. There is a `http://localhost:3000` products pag
 
 This project follows a structured organization to maintain code clarity and scalability. Below is a tree view of the project structure:
 ```
-
-├── README.md
-└── dataguess-mid-level-frontend-developer-assignment-1-e-coomerce-store
-├── README.md
 ├── package-lock.json
 ├── package.json
 ├── public
